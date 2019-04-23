@@ -20,8 +20,9 @@ class CronClass
         $server_output = curl_exec ($ch);
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
         $header = substr($server_output, 0, $header_size);
+        $body = substr($server_output, $header_size);
         curl_close ($ch);
-        return $header;
+        return array($header, $body);
     }
     public function execute($timeStamp) {
         return $this->makeCurlCall("https://in.bookmyshow.com/buytickets/avengers-endgame-mumbai/movie-mumbai-ET00100668-MT/" . $timeStamp);
