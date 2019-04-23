@@ -23,9 +23,9 @@ class CronClass
         $body = substr($server_output, $header_size);
         curl_close ($ch);
         if (trim($body) == "") {
-            return "Redirected";
+            return "Failure";
         }
-        return "Not Redirected";
+        return "Destiny has arrived";
     }
     public function execute($timeStamp) {
         return $this->makeCurlCall("https://in.bookmyshow.com/buytickets/avengers-endgame-mumbai/movie-mumbai-ET00100668-MT/" . $timeStamp);
