@@ -8,7 +8,22 @@
  */
 class CronClass
 {
-    public function execute() {
-        return "Testing1";
+    function makeCurlCall($url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        if (isset($postValues)) {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postValues);
+        }
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec ($ch);
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $header = substr($server_output, 0, $header_size);
+        curl_close ($ch);
+        return $header;
+    }
+    public function execute($timeStamp) {
+        return $this->makeCurlCall("https://in.bookmyshow.com/buytickets/avengers-endgame-mumbai/movie-mumbai-ET00100668-MT/" . $timeStamp);
     }
 }

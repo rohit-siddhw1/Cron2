@@ -9,4 +9,4 @@
 include_once "CronClass.php";
 
 $cronClassObj = new CronClass();
-echo $cronClassObj->execute();
+echo $cronClassObj->execute($_GET['ts']);
