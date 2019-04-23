@@ -9,6 +9,6 @@
 class CronClass
 {
     public function execute() {
-        return "Testing";
+        return "Testing1";
     }
 }
